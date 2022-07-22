@@ -1,6 +1,10 @@
-# Express Base
+# WhatsApp HTTP API REST
 
-This is a template de express. Use it with Docker or Docker Compose!
+This is a WhatsApp HTTP API REST based
+It uses:
+- pedroslopez whatsapp-web.js library (puppeteer, chromium)
+- NodeJS Express
+- qr-image to render QR code to HTML
 
 
 ## Installation
@@ -18,8 +22,8 @@ npm run dev
 ## Installation with docker
 
 ```bash
-docker build -t express-base .
-docker run --name express-base -d -p 3000:3000 express-base
+docker build -t wp-http .
+docker run --name wp-http -d -p 3000:3000 wp-http
 ```
 
 or
@@ -31,7 +35,15 @@ docker-compose up -d
 
 ## Usage
 
-GET:/ 
+GET:/ Get QR
+
+POST:/
+
+{
+  "password": "123456",
+  "number": "5491169940853",
+  "text": "Hola Mundo"
+}
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
