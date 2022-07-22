@@ -1,0 +1,6 @@
+2022/07/22-20:28:03.652 5f30 Reusing MANIFEST D:\LUXTON\Projects\wp-http2\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
+2022/07/22-20:28:03.653 5f30 Recovering log #3
+2022/07/22-20:28:03.653 5f30 Reusing old log D:\LUXTON\Projects\wp-http2\.wwebjs_auth\session\Default\Local Storage\leveldb/000003.log 
+2022/07/22-20:31:04.073 1198 Level-0 table #5: started
+2022/07/22-20:31:04.075 1198 Level-0 table #5: 25339 bytes OK
+2022/07/22-20:31:04.077 1198 Delete type=0 #3
