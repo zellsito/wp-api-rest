@@ -35,19 +35,25 @@ docker-compose up -d
 ## Installation on Heroku
 
 add buildpacks
-NodeJS and Puppeteer
-https://elements.heroku.com/buildpacks/jontewks/puppeteer-heroku-buildpack
+- NodeJS
+- Puppeteer https://elements.heroku.com/buildpacks/jontewks/puppeteer-heroku-buildpack
 
 Don´t forget to add your app on
 https://kaffeine.herokuapp.com/
+to keep it alive
 
 ## Usage
 
 Get QR
+```bash
 GET:/ 
+```
 
-To send messages
+
+Send messages
+```bash
 POST:/
+```
 ```json
 {
   "password": "123456",
