@@ -32,10 +32,11 @@ client.on('qr', (qr) => {
   app.get('/', (req, res) => {
     try {
       let svg_string = qrImage.imageSync(qr, { type: 'svg' });  
+      res.send(svg_string);
     } catch (e) {
       res.status(500).send();
     }
-    res.send(svg_string);
+    
   });
 });
 
