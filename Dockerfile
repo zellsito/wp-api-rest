@@ -1,6 +1,5 @@
 
 FROM node:16.16.0
-
 COPY ["package.json", "package-lock.json", "/usr/src/"]
 WORKDIR /usr/src
 RUN npm install
