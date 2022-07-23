@@ -44,7 +44,7 @@ app.listen(port, () => {
 
 client.on('qr', (qr) => {
   console.log('QR RECEIVED', qr);
-  app.get('/', (req, res) => {
+  app.get('/qr', (req, res) => {
     try {
       let svg_string = qrImage.imageSync(qr, { type: 'svg' });  
       return res.send(svg_string);
