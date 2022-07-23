@@ -16,13 +16,7 @@ app.listen(port, () => {
   console.log(`WhatsApp API REST listening at http://localhost:${port}`);
 });
 
-app.post('/', (req, res) => {
-  if (req.body.password != '123456') {
-    res.status(403).send();  
-  }
-  client.sendMessage(`${req.body.number}@c.us`, req.body.text);
-  res.send();
-})
+
 
 client.on('qr', (qr) => {
   app.get('/', (req, res) => {
@@ -30,10 +24,23 @@ client.on('qr', (qr) => {
     res.send(svg_string);
   })
   console.log('QR RECEIVED', qr);
+
 });
 
 client.on('ready', () => {
   console.log('Client is ready!');
+  app.post('/', (req, res) => {
+    if (req.body.password != '123456') {
+      res.status(403).send();  
+    }
+    try {
+      client.sendMessage(`${req.body.number}@c.us`, req.body.text);
+    } catch (e) {
+      console.log(e);
+      res.status(500).send();
+    }
+    res.send();
+  });
 });
 
 client.on('message', msg => {
