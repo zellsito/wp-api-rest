@@ -1,12 +1,19 @@
 const express = require('express');
-const app = express();
 const { body, validationResult } = require('express-validator');
 const bodyParser = require('body-parser');
+const { Client, LocalAuth  } = require('whatsapp-web.js');
+const qrImage = require('qr-image');
+const axios = require('axios');
 
 const port = process.env.PORT || 3000;
 const password = process.env.PASSWORD || "123456";
+const url = process.env.URL || `http://localhost:${port}`;//'https://wp-api-rest.herokuapp.com';
+const number = process.env.NUMBER || '1169940853';
+const timer = process.env.TIMER || 10; //in minutes
 
-const { Client, LocalAuth  } = require('whatsapp-web.js');
+const app = express();
+
+
 const client = new Client({
   authStrategy: new LocalAuth(),
   puppeteer: {
@@ -18,7 +25,12 @@ const client = new Client({
   },
 });
 
-const qrImage = require('qr-image');
+
+
+
+//Keep alive
+
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
@@ -45,6 +57,18 @@ client.on('qr', (qr) => {
 
 client.on('ready', () => {
   console.log('Client is ready!');
+  client.sendMessage(`549${number}@c.us`, 'Client is ready!');
+  setInterval(() => {
+    axios.get(`${url}/ping`)
+    .then(response => {
+      console.log(response.data.url);
+      console.log(response.data.explanation);
+      client.sendMessage(`549${number}@c.us`, "I'm alive");
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }, timer*60*1000);
   app.post('/',
   body('password').isLength({ min: 6 }),
   body('number').isLength({ min: 6 }),
@@ -74,6 +98,15 @@ client.on('ready', () => {
       res.status(500).send();
     }
     res.send();
+  });
+  app.get('/ping', (req, res) => {
+    try {
+      client.sendMessage(`${number}@c.us`, 'pong');
+      return res.send('pong');
+    } catch (e) {
+      return res.status(500).send();
+    }
+    
   });
 });
 
