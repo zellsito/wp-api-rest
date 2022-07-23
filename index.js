@@ -1,15 +1,23 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
+const password = process.env.PASSWORD || 3000;
 const bodyParser = require('body-parser');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
 const { Client, LocalAuth  } = require('whatsapp-web.js');
-const client = new Client(/*{
-  
-}*/
-{ authStrategy: new LocalAuth(), puppeteer: { headless: true,args: ['--no-sandbox', '--disable-setuid-sandbox']}});
+const client = new Client({
+  authStrategy: new LocalAuth(),
+  puppeteer: {
+    headless: true,
+    args: [
+      '--no-sandbox', 
+      '--disable-setuid-sandbox',
+    ],
+  },
+});
 
 const qrImage = require('qr-image');
 
@@ -31,9 +39,10 @@ client.on('qr', (qr) => {
 client.on('ready', () => {
   console.log('Client is ready!');
   app.post('/', (req, res) => {
-    if (req.body.password != '123456') {
+    if (req.body.password != password) {
       res.status(403).send();  
     }
+    
     try {
       client.sendMessage(`${req.body.number}@c.us`, req.body.text);
     } catch (e) {

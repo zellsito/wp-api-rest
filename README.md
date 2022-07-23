@@ -1,8 +1,8 @@
 # WhatsApp HTTP API REST
 
-This is a WhatsApp HTTP API REST based
+This is a WhatsApp HTTP API REST made by zellsito
 It uses:
-- pedroslopez whatsapp-web.js library (puppeteer, chromium)
+- pedroslopez whatsapp-web.js library (puppeteer, chromium) wwebjs.dev
 - NodeJS Express
 - qr-image to render QR code to HTML
 
@@ -32,18 +32,29 @@ or
 docker-compose up -d
 ```
 
+## Installation on Heroku
+
+add buildpacks
+NodeJS and Puppeteer
+https://elements.heroku.com/buildpacks/jontewks/puppeteer-heroku-buildpack
+
+Don´t forget to add your app on
+https://kaffeine.herokuapp.com/
 
 ## Usage
 
-GET:/ Get QR
+Get QR
+GET:/ 
 
+To send messages
 POST:/
-
+```json
 {
   "password": "123456",
   "number": "5491169940853",
   "text": "Hola Mundo"
 }
+```
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
