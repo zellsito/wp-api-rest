@@ -43,9 +43,10 @@ client.on('qr', (qr) => {
 client.on('ready', () => {
   console.log('Client is ready!');
   app.post('/', (req, res) => {
-    if (!req.body.password || !req.body.number || !req.body.text){
+    if (req.body.password === undefined || req.body.number === undefined || req.body.text === undefined){
       res.status(400).send();  
     }
+
     if (req.body.password != password) {
       res.status(403).send();  
     }
