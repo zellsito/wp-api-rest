@@ -1,3 +1,8 @@
 {
+  "name": "WhatsApp API REST",
+  "description": "An API REST for WhatsApp",
+  "repository": "https://github.com/zellsito/wa-api-rest",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["whatsapp", "express", "api", "rest", "http"],
   "stack": "heroku-22"
 }
