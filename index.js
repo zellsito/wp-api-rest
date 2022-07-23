@@ -28,17 +28,23 @@ app.listen(port, () => {
 
 
 client.on('qr', (qr) => {
-  app.get('/', (req, res) => {
-    let svg_string = qrImage.imageSync(qr, { type: 'svg' });
-    res.send(svg_string);
-  })
   console.log('QR RECEIVED', qr);
-
+  app.get('/', (req, res) => {
+    try {
+      let svg_string = qrImage.imageSync(qr, { type: 'svg' });  
+    } catch (e) {
+      res.status(500).send();
+    }
+    res.send(svg_string);
+  });
 });
 
 client.on('ready', () => {
   console.log('Client is ready!');
   app.post('/', (req, res) => {
+    if (!req.body.password || !req.body.number || !req.body.text){
+      res.status(400).send();  
+    }
     if (req.body.password != password) {
       res.status(403).send();  
     }
