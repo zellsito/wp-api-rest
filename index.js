@@ -5,14 +5,13 @@ const { Client, LocalAuth  } = require('whatsapp-web.js');
 const qrImage = require('qr-image');
 const axios = require('axios');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 const password = process.env.PASSWORD || "123456";
 const url = process.env.URL || `http://localhost:${port}`;//'https://wp-api-rest.herokuapp.com';
 const number = process.env.NUMBER || '1169940853';
 const timer = process.env.TIMER || 10; //in minutes
 
 const app = express();
-
 
 const client = new Client({
   authStrategy: new LocalAuth(),
@@ -25,13 +24,7 @@ const client = new Client({
   },
 });
 
-
-
-
 //Keep alive
-
-
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
