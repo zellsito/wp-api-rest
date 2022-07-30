@@ -10,7 +10,7 @@ RUN \
 
 COPY ["package.json", "package-lock.json", "/usr/src/"]
 WORKDIR /usr/src
-RUN npm install -g npm@8.15.1 && \
+RUN npm install --location=global npm@8.15.1 && \
     npm install
 EXPOSE 4000
 COPY . /usr/src/
