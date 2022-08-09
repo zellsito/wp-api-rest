@@ -1,7 +1,7 @@
 
-# WhatsApp HTTP API REST
+# WhatsApp HTTP REST Api
 
-This is a WhatsApp HTTP API REST made by zellsito
+This is a WhatsApp HTTP REST Api made by zellsito
 It uses:
 - pedroslopez whatsapp-web.js library (puppeteer, chromium) wwebjs.dev
 - NodeJS Express
